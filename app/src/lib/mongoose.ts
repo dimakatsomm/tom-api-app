@@ -21,10 +21,12 @@ async function connectDb() {
       bufferCommands: false,
     }
 
-    cached.promise = mongoose.connect(C.MONGODB_URI, options).then((mongoose) => {
-      console.log('Connected to DB.');
-      return mongoose;
-  });
+    cached.promise = mongoose.connect(C.MONGODB_URI, options).then((m) => {
++     console.log('Connected to DB.');
+      return m;
+    }).catch((e) => {
++     console.error('Error connecting to DB:', e);
+    });
   }
 }
 
